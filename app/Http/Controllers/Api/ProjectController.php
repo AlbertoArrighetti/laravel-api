@@ -16,4 +16,27 @@ class ProjectController extends Controller
             "results" => $projects,
         ]);
     }
+
+
+
+    public function show($id) {
+
+        // per trovare il post senza eager loading
+        // $post = Post::find($id);
+
+        $project = Project::with(['type', 'technologies'])->where('id', '=', $id)->first();
+
+        // dd($post);
+
+        return response()->json([
+            "success" => true,
+            "project" => $project
+        ]);
+
+    }
+
+
+
+
+
 }
