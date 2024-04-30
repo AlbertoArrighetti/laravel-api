@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 
 class Project extends Model
 {
@@ -23,5 +24,10 @@ class Project extends Model
     // pivot 
     public function technologies() {
         return $this->belongsToMany(Technology::class);
+    }
+
+    public function getThumbAttribute($value): string
+    {
+        return $value ? asset('storage/'.$value) : '';
     }
 }
