@@ -6,34 +6,31 @@ use App\Models\Project;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
+use Faker\Generator as Faker;
+
+
 
 class ProjectSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run(Faker $faker): void
     {
-
-        $projetcs = [
-            [
-                'title' => 'Esempio',
-                'description' => 'Esercizio di esempio',
-                'thumb' => '',
-                'url' => 'https://github.com/AlbertoArrighetti?tab=repositories',
-            ],
-        ];
-
-
-        foreach ($projetcs as $project) {
+          
+        for ($i = 0; $i < 10; $i++ ) {
             $newProject = new Project();
 
-            $newProject->title = $project['title'];
-            $newProject->description = $project['description'];
-            $newProject->thumb = $project['thumb'];
-            $newProject->url = $project['url'];
+            $newProject->title = $faker->unique()->word(1);
+            $newProject->description = $faker->sentence(4);
+            $newProject->thumb = $faker->imageUrl(360, 360, 'animals', true);
+            $newProject->url = $faker->url();
+
+
+            $newProject->slug = $newProject->title;
 
             $newProject->save();
         }
+
     }
 }
