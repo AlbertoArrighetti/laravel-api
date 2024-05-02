@@ -21,7 +21,7 @@
                     <a href="{{$project->url}}">View the project on git-hub</a>
                 </td>
                 <td>
-                    <a href="{{route('admin.projects.show', $project->id )}}">View more details</a>
+                    <a href="{{route('admin.projects.show', $project )}}">View more details</a>
                 </td>
                 
             </tr>

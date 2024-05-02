@@ -30,7 +30,7 @@
     <div class="flex justify-content-between ">
 
         <div class="d-flex gap-4 mb-4">
-            <a href="{{route('admin.projects.edit', $project->id)}}">
+            <a href="{{route('admin.projects.edit', $project )}}">
                 Edit your project
             </a>
             <a href="{{route('admin.projects.index')}}">
@@ -70,7 +70,7 @@
                 <button type="button" class="btn btn-success " data-bs-dismiss="modal">Back</button>
                 
                 
-                <form action="{{route('admin.projects.destroy', $project->id)}}" method="POST">
+                <form action="{{route('admin.projects.destroy', $project)}}" method="POST">
                     @csrf
                     @method("DELETE")
                     

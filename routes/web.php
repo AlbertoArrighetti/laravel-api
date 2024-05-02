@@ -35,7 +35,10 @@ Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')->group(
         Route::get('/', [DashboardController::class, 'index'])->name('index');
 
         // projects routes
-        Route::resource('projects', ProjectController::class);
+
+        Route::resource('projects', ProjectController::class)->parameters([ 'projects' => 'project:slug' ]);
+
+
         // types routes
         Route::resource('types', TypeController::class);
         // technologies routes
