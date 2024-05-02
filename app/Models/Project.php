@@ -15,7 +15,7 @@ class Project extends Model
     use SoftDeletes;
 
     // fillable
-    protected $fillable = ['title', 'description', 'url', 'type_id' ];
+    protected $fillable = ['title', 'description', 'url', 'type_id','slug' ];
 
     // foreign
     public function type() {
