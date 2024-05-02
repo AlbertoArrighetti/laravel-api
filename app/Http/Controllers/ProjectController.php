@@ -9,6 +9,9 @@ use App\Models\Type;
 use App\Http\Requests\StoreProjectRequest;
 use Illuminate\Support\Facades\Storage;
 
+//ci importiamo la libreria per la gestione e la creazione delle stringhe utile per gli slug
+use Illuminate\Support\Str;
+
 class ProjectController extends Controller
 {
     /**
@@ -45,9 +48,16 @@ class ProjectController extends Controller
             $thumb_path = Storage::disk('public')->put('projects_thumbs', $request->thumb);
             $newProject->thumb = $thumb_path;
         }
+        
+        //comando usato per "scrivere in modo corretto" la stringa da inserire nel url
+        $newProject->slug = Str::slug($request->title);
 
         //fillable
         $newProject->fill($request->all());
+
+        
+
+
         $newProject->save();
 
         // technologies 
@@ -62,6 +72,9 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
+        
+
+
         return view('admin.projects.show', compact('project'));
     }
 
@@ -89,9 +102,15 @@ class ProjectController extends Controller
             $thumb_path = Storage::disk('public')->put('projects_thumbs', $request->thumb);
             $project->thumb = $thumb_path;
         }
+        
+        //comando usato per "scrivere in modo corretto" la stringa da inserire nel url
+        $project->slug = Str::slug($request->title);
 
         //fillable
         $project->update($request->all()); 
+
+        
+
         $project->save();
        
         // technologies
