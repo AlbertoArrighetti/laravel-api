@@ -87,7 +87,7 @@
                             {{ $project->technologies->contains($technology) ? 'checked' : '' }}
                             @endif
                         >
-                        <label for="technology-{{$technology->id}}" class="form-check-label" >
+                        <label for="technology-{{$technology}}" class="form-check-label" >
                             {{$technology->name}}
                         </label>
                     </div>
@@ -102,7 +102,7 @@
         <div class="col-12 d-flex justify-content-between ">
           <button type="submit" class="btn btn-primary">Save changes</button>
 
-          <a href="{{route('admin.projects.show', $project->id)}}">Cancel changes</a>
+          <a href="{{route('admin.projects.show', $project)}}">Cancel changes</a>
         </div>
     </form>
 
