@@ -14,6 +14,7 @@
             <label for="title" class="form-label">Title :</label>
             <input type="text" required class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{old('title') ?? $project->title}}">
               @error('title')
+              
               <div class="invalid-feedback">
                   {{$message}}
               </div>
