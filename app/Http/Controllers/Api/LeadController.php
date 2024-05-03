@@ -11,12 +11,9 @@ use Illuminate\Support\Facades\Validator;
 
 class LeadController extends Controller
 {
-    
-    // memorizzando il nuovo contatto nel nostro db
     public function store(Request $request) {
 
-        // validazione
-        // ricordiamoci di importare la Facade
+        // validation
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'address' => 'required|email',
@@ -28,10 +25,9 @@ class LeadController extends Controller
             'message.required' => "Devi inserire un messaggio",
         ]);
 
-        
-        // comportamento in caso la validazione non sia di successo
+        // if it fails
         if($validator->fails()) {
-            // restituiamo un oggetto json con il messaggio di errore
+            // return error message
             return response()->json([
                 'success' => false,
                 'errors' => $validator->errors()
@@ -39,21 +35,16 @@ class LeadController extends Controller
             
         }
 
-
-        // salvataggio nel db
         $newLead = new Lead();
+        // fill
         $newLead->fill($request->all());
         $newLead->save();
 
-
-    
-        // invio della mail
-        Mail::to('gabrielspanu96@gmail.com')->send(new NewContact($newLead));
+        Mail::to('alberto.arrighetti1571@gmail.com')->send(new NewContact($newLead));
 
 
 
-        // risposta al client
-        // restituisce un json con success true
+        // respond to the customer here
         return response()->json([
             'success' => true,
             'message' => 'Richiesta di contatto inviata correttamente',
