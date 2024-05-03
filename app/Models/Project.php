@@ -28,6 +28,6 @@ class Project extends Model
 
     public function getThumbAttribute($value): string
     {
-        return $value ? asset('storage/'.$value) : '';
+        return $value ? asset($value) : '';
     }
 }
